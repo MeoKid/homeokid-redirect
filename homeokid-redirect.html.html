@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirection en cours...</title>
+    
+    <!-- Meta Facebook pour optimiser le partage -->
+    <meta property="og:title" content="Homeokid - Accès au produit">
+    <meta property="og:description" content="Accédez à votre produit Homeokid en quelques secondes">
+    <meta property="og:type" content="website">
+    
+    <!-- PIXEL FACEBOOK - REMPLACEZ 'YOUR_PIXEL_ID' par votre véritable ID pixel -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    
+    // REMPLACEZ 'YOUR_PIXEL_ID' par votre ID pixel Facebook
+    fbq('init', 'YOUR_PIXEL_ID');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1"
+    /></noscript>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        
+        .container {
+            text-align: center;
+            max-width: 500px;
+            padding: 40px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+        
+        h1 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+        
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 3px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #fff, rgba(255, 255, 255, 0.8));
+            border-radius: 3px;
+            width: 0%;
+            animation: progress 3s ease-out forwards;
+        }
+        
+        @keyframes progress {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+        
+        .redirect-info {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        .manual-link {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 12px 24px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .manual-link:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                margin: 20px;
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">🚀</div>
+        <h1>Redirection en cours...</h1>
+        <p class="subtitle">Préparation de votre accès au produit</p>
+        
+        <div class="loading-spinner"></div>
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
+        </div>
+        
+        <p class="redirect-info">
+            Vous allez être redirigé automatiquement vers Gumroad dans <span id="countdown">3</span> secondes
+        </p>
+        
+        <a href="#" id="manual-link" class="manual-link" style="display: none;">
+            Cliquer ici si la redirection ne fonctionne pas
+        </a>
+    </div>
+
+    <script>
+        // CONFIGURATION - MODIFIEZ CES VALEURS
+        const CONFIG = {
+            // URL de votre produit Gumroad
+            gumroadUrl: 'https://meokid.gumroad.com/l/homeokid',
+            
+            // Délai avant redirection (en secondes)
+            redirectDelay: 3,
+            
+            // Paramètres de tracking personnalisés
+            trackingParams: {
+                source: 'facebook_redirect',
+                medium: 'redirect_page',
+                campaign: 'homeokid_launch'
+            }
+        };
+
+        // Variables globales
+        let countdownTimer;
+        let redirectTimer;
+        
+        // Éléments DOM
+        const countdownElement = document.getElementById('countdown');
+        const manualLink = document.getElementById('manual-link');
+        
+        // Fonction pour créer l'URL avec paramètres UTM
+        function buildTrackingUrl(baseUrl, params) {
+            const url = new URL(baseUrl);
+            Object.keys(params).forEach(key => {
+                url.searchParams.set(`utm_${key}`, params[key]);
+            });
+            
+            // Ajouter timestamp pour éviter le cache
+            url.searchParams.set('t', Date.now());
+            
+            return url.toString();
+        }
+        
+        // Fonction de tracking Facebook
+        function trackFacebookEvents() {
+            if (typeof fbq !== 'undefined') {
+                // Event: ViewContent - L'utilisateur consulte le produit
+                fbq('track', 'ViewContent', {
+                    content_type: 'product',
+                    content_name: 'Homeokid Product Access',
+                    source: 'redirect_page'
+                });
+                
+                // Event personnalisé: RedirectInitiated
+                fbq('trackCustom', 'RedirectInitiated', {
+                    redirect_source: 'facebook',
+                    destination: 'gumroad'
+                });
+                
+                console.log('✅ Événements Facebook trackés avec succès');
+            } else {
+                console.warn('⚠️ Facebook Pixel non chargé');
+            }
+        }
+        
+        // Fonction de redirection
+        function performRedirect() {
+            const finalUrl = buildTrackingUrl(CONFIG.gumroadUrl, CONFIG.trackingParams);
+            
+            // Track avant redirection
+            if (typeof fbq !== 'undefined') {
+                fbq('trackCustom', 'RedirectExecuted', {
+                    final_url: finalUrl,
+                    delay: CONFIG.redirectDelay
+                });
+            }
+            
+            // Redirection
+            window.location.href = finalUrl;
+        }
+        
+        // Fonction de countdown
+        function startCountdown() {
+            let timeLeft = CONFIG.redirectDelay;
+            countdownElement.textContent = timeLeft;
+            
+            countdownTimer = setInterval(() => {
+                timeLeft--;
+                countdownElement.textContent = timeLeft;
+                
+                if (timeLeft <= 0) {
+                    clearInterval(countdownTimer);
+                    countdownElement.textContent = '0';
+                }
+            }, 1000);
+        }
+        
+        // Fonction d'initialisation
+        function initRedirect() {
+            console.log('🚀 Initialisation de la redirection...');
+            
+            // Track events Facebook
+            trackFacebookEvents();
+            
+            // Construire l'URL finale
+            const finalUrl = buildTrackingUrl(CONFIG.gumroadUrl, CONFIG.trackingParams);
+            manualLink.href = finalUrl;
+            
+            // Démarrer le countdown
+            startCountdown();
+            
+            // Programmer la redirection
+            redirectTimer = setTimeout(() => {
+                performRedirect();
+            }, CONFIG.redirectDelay * 1000);
+            
+            // Afficher le lien manuel après un délai
+            setTimeout(() => {
+                manualLink.style.display = 'inline-block';
+            }, 2000);
+        }
+        
+        // Gestion des erreurs
+        window.addEventListener('error', function(e) {
+            console.error('❌ Erreur détectée:', e.error);
+            
+            // Assurer la redirection même en cas d'erreur
+            setTimeout(() => {
+                const fallbackUrl = CONFIG.gumroadUrl + '?fallback=true';
+                window.location.href = fallbackUrl;
+            }, 5000);
+        });
+        
+        // Event listener pour le lien manuel
+        manualLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Clear timers
+            clearTimeout(redirectTimer);
+            clearInterval(countdownTimer);
+            
+            // Track clic manuel
+            if (typeof fbq !== 'undefined') {
+                fbq('trackCustom', 'ManualRedirectClick');
+            }
+            
+            // Redirection immédiate
+            performRedirect();
+        });
+        
+        // Démarrer quand la page est chargée
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initRedirect);
+        } else {
+            initRedirect();
+        }
+        
+        // Cleanup avant déchargement de la page
+        window.addEventListener('beforeunload', function() {
+            clearTimeout(redirectTimer);
+            clearInterval(countdownTimer);
+        });
+    </script>
+</body>
+</html>
