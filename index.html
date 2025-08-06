@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="refresh" content="0; url=https://meokid.gumroad.com/l/homeokid?_gl=1*1lgikdm*_ga*MTUyMTA1NDIyMS4xNzQ2NjQ0MTQ3*_ga_6LJN6D94N6*czE3NTMxODgyNDAkbzE2JGcxJHQxNzUzMTg5MDUzJGo2MCRsMCRoMA.." />
+    <meta http-equiv="refresh" content="3; url=https://meokid.gumroad.com/l/homeokid?_gl=1*1lgikdm*_ga*MTUyMTA1NDIyMS4xNzQ2NjQ0MTQ3*_ga_6LJN6D94N6*czE3NTMxODgyNDAkbzE2JGcxJHQxNzUzMTg5MDUzJGo2MCRsMCRoMA.." />
     <title>Redirection en cours...</title>
     
     <!-- Meta Facebook pour optimiser le partage -->
@@ -11,25 +11,6 @@
     <meta property="og:description" content="Accédez à votre produit Homeokid en quelques secondes">
     <meta property="og:url" content="https://meokid.github.io/homeokid-redirect/">
     <meta property="og:type" content="website">
-    
-    <!-- PIXEL FACEBOOK - ID: 761119239723536 -->
-    <script>
-        !function(f,b,e,v,n,t,s)
-        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-        n.queue=[];t=b.createElement(e);t.async=!0;
-        t.src=v;s=b.getElementsByTagName(e)[0];
-        s.parentNode.insertBefore(t,s)}(window, document,'script',
-        'https://connect.facebook.net/en_US/fbevents.js');
-        
-        // ID Facebook Pixel: 761119239723536
-        fbq('init', '761119239723536');
-        fbq('track', 'PageView');
-    </script>
-    <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=761119239723536&ev=PageView&noscript=1"
-    /></noscript>
     
     <style>
         * {
@@ -128,12 +109,125 @@
             height: 100%;
             background: white;
             width: 0%;
-            animation: progress 2s ease-in-out;
+            animation: progress 3s ease-in-out;
         }
         
         @keyframes progress {
             0% { width: 0%; }
             100% { width: 100%; }
+        }
+
+        /* Cookie Consent Styles */
+        .cookie-consent {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 20px;
+            z-index: 1000;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .cookie-consent.show {
+            transform: translateY(0);
+        }
+        
+        .cookie-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .cookie-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .cookie-text h3 {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+            color: #fff;
+        }
+        
+        .cookie-text p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            line-height: 1.4;
+            margin: 0;
+        }
+        
+        .cookie-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        
+        .cookie-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            min-width: 100px;
+        }
+        
+        .cookie-btn.accept {
+            background: #4CAF50;
+            color: white;
+        }
+        
+        .cookie-btn.accept:hover {
+            background: #45a049;
+            transform: translateY(-1px);
+        }
+        
+        .cookie-btn.decline {
+            background: transparent;
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .cookie-btn.decline:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .cookie-btn.settings {
+            background: transparent;
+            color: #4CAF50;
+            border: 1px solid #4CAF50;
+        }
+        
+        .cookie-btn.settings:hover {
+            background: rgba(76, 175, 80, 0.1);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .cookie-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .cookie-buttons {
+                justify-content: center;
+                width: 100%;
+            }
+            
+            .cookie-btn {
+                flex: 1;
+                min-width: 80px;
+            }
         }
     </style>
 </head>
@@ -158,19 +252,121 @@
         </a>
     </div>
 
+    <!-- Cookie Consent Banner -->
+    <div class="cookie-consent" id="cookieConsent">
+        <div class="cookie-content">
+            <div class="cookie-text">
+                <h3>🍪 Nous utilisons des cookies</h3>
+                <p>Nous utilisons des cookies pour améliorer votre expérience et mesurer l'efficacité de nos publicités. En continuant, vous acceptez notre utilisation des cookies.</p>
+            </div>
+            <div class="cookie-buttons">
+                <button class="cookie-btn accept" onclick="acceptCookies()">Accepter</button>
+                <button class="cookie-btn decline" onclick="declineCookies()">Refuser</button>
+                <button class="cookie-btn settings" onclick="showSettings()">Paramètres</button>
+            </div>
+        </div>
+    </div>
+
     <script>
-        // Redirection JavaScript de secours
-        setTimeout(function() {
-            window.location.href = "https://meokid.gumroad.com/l/homeokid?_gl=1*1lgikdm*_ga*MTUyMTA1NDIyMS4xNzQ2NjQ0MTQ3*_ga_6LJN6D94N6*czE3NTMxODgyNDAkbzE2JGcxJHQxNzUzMTg5MDUzJGo2MCRsMCRoMA..";
-        }, 1000);
+        // Variables globales
+        let cookiesAccepted = false;
+        let redirectTimer;
         
-        // Tracking Facebook Pixel pour la redirection
-        if (typeof fbq !== 'undefined') {
-            fbq('track', 'Lead'); // Événement personnalisé pour tracker les redirections
+        // Vérifier si l'utilisateur a déjà fait un choix
+        function checkCookieConsent() {
+            const consent = localStorage.getItem('cookieConsent');
+            if (consent === 'accepted') {
+                cookiesAccepted = true;
+                initializeFacebookPixel();
+                startRedirection();
+            } else if (consent === 'declined') {
+                cookiesAccepted = false;
+                startRedirection();
+            } else {
+                // Afficher le banner après 1 seconde
+                setTimeout(() => {
+                    document.getElementById('cookieConsent').classList.add('show');
+                }, 1000);
+            }
         }
+        
+        // Accepter les cookies
+        function acceptCookies() {
+            cookiesAccepted = true;
+            localStorage.setItem('cookieConsent', 'accepted');
+            document.getElementById('cookieConsent').classList.remove('show');
+            initializeFacebookPixel();
+            startRedirection();
+        }
+        
+        // Refuser les cookies
+        function declineCookies() {
+            cookiesAccepted = false;
+            localStorage.setItem('cookieConsent', 'declined');
+            document.getElementById('cookieConsent').classList.remove('show');
+            startRedirection();
+        }
+        
+        // Afficher les paramètres (version simplifiée)
+        function showSettings() {
+            alert('Paramètres des cookies:\n\n• Cookies essentiels: Toujours activés\n• Cookies de mesure d\'audience: Optionnels\n• Cookies publicitaires: Optionnels\n\nChoisissez "Accepter" pour activer tous les cookies ou "Refuser" pour les cookies optionnels uniquement.');
+        }
+        
+        // Initialiser Facebook Pixel (seulement si accepté)
+        function initializeFacebookPixel() {
+            if (!cookiesAccepted) return;
+            
+            // Charger Facebook Pixel
+            !function(f,b,e,v,n,t,s)
+            {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+            n.queue=[];t=b.createElement(e);t.async=!0;
+            t.src=v;s=b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t,s)}(window, document,'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+            
+            // Initialiser avec votre ID
+            fbq('init', '761119239723536');
+            fbq('track', 'PageView');
+            
+            // Ajouter la balise noscript
+            const noscript = document.createElement('noscript');
+            const img = document.createElement('img');
+            img.height = '1';
+            img.width = '1';
+            img.style.display = 'none';
+            img.src = 'https://www.facebook.com/tr?id=761119239723536&ev=PageView&noscript=1';
+            noscript.appendChild(img);
+            document.head.appendChild(noscript);
+        }
+        
+        // Démarrer la redirection
+        function startRedirection() {
+            // Redirection après 3 secondes
+            redirectTimer = setTimeout(function() {
+                // Tracker l'événement Lead si les cookies sont acceptés
+                if (cookiesAccepted && typeof fbq !== 'undefined') {
+                    fbq('track', 'Lead');
+                }
+                
+                // Redirection
+                window.location.href = "https://meokid.gumroad.com/l/homeokid?_gl=1*1lgikdm*_ga*MTUyMTA1NDIyMS4xNzQ2NjQ0MTQ3*_ga_6LJN6D94N6*czE3NTMxODgyNDAkbzE2JGcxJHQxNzUzMTg5MDUzJGo2MCRsMCRoMA..";
+            }, 3000);
+        }
+        
+        // Initialiser au chargement de la page
+        document.addEventListener('DOMContentLoaded', function() {
+            checkCookieConsent();
+        });
+        
+        // Gérer les clics sur le lien manuel
+        document.querySelector('.manual-link').addEventListener('click', function() {
+            if (cookiesAccepted && typeof fbq !== 'undefined') {
+                fbq('track', 'Lead');
+            }
+        });
     </script>
 </body>
 </html>
-
-
 
